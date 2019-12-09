@@ -3,3 +3,15 @@
 ################################################################################
 
 /.vs
+/FSL.Framework.Api/bin
+/FSL.Framework.Api/obj
+/FSL.Framework.Core/.vs
+/FSL.Framework.Core/bin
+/FSL.Framework.Core/obj
+/FSL.Framework.Web/bin
+/FSL.Framework.Web/obj
+*.user
+/FSL.MyApp.Api/bin
+/FSL.MyApp.Api/obj
+/FSL.MyApp.Blazor/bin/Debug/netcoreapp3.0
+/FSL.MyApp.Blazor/obj
