@@ -1,12 +1,11 @@
 ﻿using FSL.Framework.Core.ApiClient.Models;
-using FSL.Framework.Core.ApiClient.Provider;
 using FSL.Framework.Core.Extensions;
 using System;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FSL.Framework.Web.ApiClient.Provider
+namespace FSL.Framework.Core.ApiClient.Provider
 {
     public sealed class HttpClientApiClientProvider : BaseApiClientProvider
     {

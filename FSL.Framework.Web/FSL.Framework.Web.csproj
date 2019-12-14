@@ -15,4 +15,8 @@
     <ProjectReference Include="..\FSL.Framework.Core\FSL.Framework.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ApiClient\Provider\" />
+  </ItemGroup>
+
 </Project>

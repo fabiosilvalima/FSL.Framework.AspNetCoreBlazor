@@ -1,4 +1,5 @@
 ﻿using FSL.Framework.Core.Configuration.Models;
+using FSL.Framework.Core.Extensions;
 using System;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
@@ -8,6 +9,7 @@ namespace FSL.Framework.Core.Repository
     public class SqlRepository
     {
         private string _connectionStringId;
+        private string _connectionString;
         private readonly IDefaultConfiguration _configuration;
 
         public SqlRepository(
@@ -18,9 +20,10 @@ namespace FSL.Framework.Core.Repository
         }
 
         protected async Task<T> WithConnectionAsync<T>(
-            Func<SqlConnection, Task<T>> getData)
+            Func<SqlConnection, Task<T>> getData,
+            string connectionString = null)
         {
-            using (var connection = CreateConnection())
+            using (var connection = CreateConnection(connectionString))
             {
                 await connection.OpenAsync();
 
@@ -31,6 +34,7 @@ namespace FSL.Framework.Core.Repository
                 return data;
             };
         }
+
         protected SqlRepository UseConnectionStringId(
             string connectionStringId)
         {
@@ -39,9 +43,28 @@ namespace FSL.Framework.Core.Repository
             return this;
         }
 
-        private SqlConnection CreateConnection()
+        protected SqlRepository UseConnectionString(
+            string connectionString)
         {
-            return new SqlConnection(_configuration.GetConnectionString(_connectionStringId));
+            _connectionString = connectionString;
+
+            return this;
+        }
+
+        private SqlConnection CreateConnection(
+            string connectionString = null)
+        {
+            if (!connectionString.IsNullOrEmpty())
+            {
+                return new SqlConnection(connectionString);
+            }
+
+            if (_connectionString.IsNullOrEmpty())
+            {
+                _connectionString = _configuration.GetConnectionString(_connectionStringId);
+            }
+
+            return new SqlConnection(_connectionString);
         }
     }
 }

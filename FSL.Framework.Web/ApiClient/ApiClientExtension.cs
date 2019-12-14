@@ -1,5 +1,4 @@
 ﻿using FSL.Framework.Core.ApiClient.Provider;
-using FSL.Framework.Web.ApiClient.Provider;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace FSL.Framework.Web.ApiClient
